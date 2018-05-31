@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>pyo_ros</name>
+  <version>0.1.0</version>
+  <description>The pyo_ros package</description>
+
+  <maintainer email="cavanas171@gmail.com">simone</maintainer>
+  <license>BSD</license>
+  <url type="website">https://developer.thalmic.com/docs/api_reference/platform/functions.html</url>
+  <url type="repository">https://github.com/dzhu/myo-raw</url>
+  <url type="website">https://wiki.ros.org/ROS/Tutorials</url>
+  <url type="website">http://www.fernandocosentino.net/pyoconnect</url>
+
+  <buildtool_depend>catkin</buildtool_depend>
+  <build_depend>message_generation</build_depend>
+  <build_depend>roscpp</build_depend>
+  <build_depend>rospy</build_depend>
+  <build_depend>std_msgs</build_depend>
+  <build_export_depend>roscpp</build_export_depend>
+  <build_export_depend>rospy</build_export_depend>
+  <build_export_depend>std_msgs</build_export_depend>
+  <exec_depend>roscpp</exec_depend>
+  <exec_depend>rospy</exec_depend>
+  <exec_depend>std_msgs</exec_depend>
+
+</package>

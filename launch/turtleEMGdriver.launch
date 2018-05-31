@@ -1,0 +1,12 @@
+<launch>
+
+  <group ns="turtlesim1">
+    <node pkg="turtlesim" name="sim" type="turtlesim_node"/>
+  </group>
+
+  <!--launch turtleTalkerEMG-->
+  <group ns="turtleTalkerEMG">
+    <node pkg="pyo_ros" name="tTEMG" type="turtleTalkerEMG.py" output="screen"/>
+  </group>
+
+</launch>
