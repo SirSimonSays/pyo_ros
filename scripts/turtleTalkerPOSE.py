@@ -2,14 +2,24 @@
 
 import rospy
 from myo_raw import *
+from std_msgs.msg import Int16
 from geometry_msgs.msg import Pose, Point, Twist, Quaternion, Vector3
 from gazebo_msgs.msg import ModelState
+
+flag = False
+
+def callback(data):
+    global flag
+    rospy.loginfo(rospy.get_caller_id() + "I heard %s", data.data)
+    flag = not flag
 
 # set topic and send data
 def turtleTalkerPOSE():
     # pub_pose_turtle = rospy.Publisher('/turtlesim1/turtle1/cmd_vel', Twist, queue_size=10)
-    pub_pose_p3at = rospy.Publisher('/gazebo/set_model_state', ModelState, queue_size=10)
+    # pub_pose_p3at = rospy.Publisher('/gazebo/set_model_state', ModelState, queue_size=10)
+    pub_pose_P3AT = rospy.Publisher('/RosAria/cmd_vel', Twist, queue_size=10)
     rospy.init_node('myo_turtlesim_driver', anonymous=True)
+    sub_key = rospy.Subscriber('/key', Int16, callback)
     rate = rospy.Rate(10) # 10hz
     m = MyoRaw()
 
@@ -27,7 +37,7 @@ def turtleTalkerPOSE():
 
     # take POSE and process it
     def proc_pose(pose):
-        p = Point()
+        p = Point(0,0,0)
 
         # FIST -> go ahead
         if pose.value == 1:
@@ -62,8 +72,12 @@ def turtleTalkerPOSE():
             linear = Vector3(0, 0, 0)
             angular = Vector3(0, 0, 0)
 
+        if(flag):
         # pub_pose_turtle.publish(Twist(linear,angular))
-        pub_pose_p3at.publish("pioneer3at", Pose(p, Quaternion(0, 0, 0, 0)), Twist(linear, angular), "world")
+        # pub_pose_p3at.publish("pioneer3at", Pose(p, Quaternion(0, 0, 0, 0)), Twist(linear, angular), "world")
+            pub_pose_P3AT.publish(Twist(linear,angular))
+        else:
+            pub_pose_P3AT.publish(Twist(Vector3(0,0,0),Vector3(0,0,0)))
 
     # disconnect Myo
     def byeMyo(m):

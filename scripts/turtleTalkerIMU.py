@@ -4,8 +4,9 @@
 import rospy
 from myo_raw import *
 from math import sqrt, asin, atan2
+from std_msgs.msg import Int16
 from geometry_msgs.msg import Pose, Point, Twist, Quaternion, Vector3
-from gazebo_msgs.msg import ModelState
+# from gazebo_msgs.msg import ModelState
 
 # https://github.com/thalmiclabs/myo-bluetooth/blob/master/myohw.h#L292-L295
 # typedef struct MYOHW_PACKED {
@@ -24,11 +25,20 @@ from gazebo_msgs.msg import ModelState
 # define MYOHW_ACCELEROMETER_SCALE 2048.0f  ///< See myohw_imu_data_t::accelerometer
 # define MYOHW_GYROSCOPE_SCALE     16.0f    ///< See myohw_imu_data_t::gyroscope
 
+flag = False
+
+def callback(data):
+    global flag
+    rospy.loginfo(rospy.get_caller_id() + "I heard %s", data.data)
+    flag = not flag
+
 # set topic and send data
 def turtleTalkerIMU():
     # pub_imu_turtle = rospy.Publisher('/turtlesim1/turtle1/cmd_vel', Twist, queue_size=10)
-    pub_imu_p3at = rospy.Publisher('/gazebo/set_model_state', ModelState, queue_size=10)
+    # pub_imu_p3at = rospy.Publisher('/gazebo/set_model_state', ModelState, queue_size=10)
+    pub_imu_P3AT = rospy.Publisher('/RosAria/cmd_vel', Twist, queue_size=10)
     rospy.init_node('myo_turtlesim_driver', anonymous=True)
+    sub_key = rospy.Subscriber('/key', Int16, callback)
     rate = rospy.Rate(10) # 10hz
     m = MyoRaw()
 
@@ -54,8 +64,12 @@ def turtleTalkerIMU():
         # move arm left and right (turn left and turn right)
         yaw = atan2(2.0 * (quat.w * quat.z + quat.x * quat.y), 1.0 - 2.0 * (quat.y * quat.y + quat.z * quat.z))
 
+        if(flag):
         # pub_imu_turtle.publish(Twist(Vector3(-pitch, 0.0, 0.0), Vector3(0.0, 0.0, yaw)))
-        pub_imu_p3at.publish("pioneer3at", Pose(Point(0, 0, 0), Quaternion(0, 0, 0, 0)), Twist(Vector3(0, 0, 0), Vector3(0, 0, 0)), "world")
+        # pub_imu_p3at.publish("pioneer3at", Pose(Point(0, 0, 0), Quaternion(0, 0, 0, 0)), Twist(Vector3(0, 0, 0), Vector3(0, 0, 0)), "world")
+            pub_imu_P3AT.publish(Twist(Vector3(-pitch, 0.0, 0.0), Vector3(0.0, 0.0, yaw)))
+        else:
+            pub_imu_P3AT.publish(Twist(Vector3(0,0,0),Vector3(0,0,0)))
 
     # disconnect Myo
     def byeMyo(m):
