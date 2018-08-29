@@ -2,6 +2,9 @@ import rospy
 from std_msgs.msg import Int16
 import sys, select, termios, tty
 
+# launch this file to have an emergency button, when press '.' it changes his flag
+# from false to true or viceversa. 'q' button is for exit.
+
 def getKey():
     tty.setraw(sys.stdin.fileno())
     select.select([sys.stdin], [], [], 0)
