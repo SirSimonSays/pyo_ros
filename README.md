@@ -10,16 +10,16 @@ The fact that Myo has IMU sensors has inducted me to develop two disctinct way o
   * [ROSAria](https://wiki.ros.org/ROSARIA/Tutorials/How%20to%20use%20ROSARIA)
   
 ## How to install:
-  * cd catkin_ws
-  * source devel/setup.bash
-  * cd src
-  * git clone https://github.com/SirSimonSays/pyo_ros
+  * _cd catkin_ws_
+  * _source devel/setup.bash_
+  * _cd src_
+  * _git clone https://github.com/SirSimonSays/pyo_ros _
 
 ## How to launch:
-  1. turtlesim controlled by Myo
+  * turtlesim controlled by Myo
     * _roslaunch pyo_ros turtlePOSEdriver.launch_
     * _roslaunch pyo_ros turtleIMUdriver.launch_
-  1. P3AT controlled by Myo
+  * P3AT controlled by Myo
     1. connect P3AT with serial bus
     1. first terminal: _roscore_
     1. second terminal: _rosrun rosaria RosAria_
