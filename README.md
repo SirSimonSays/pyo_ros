@@ -10,9 +10,9 @@ The fact that Myo has IMU sensors has inducted me to develop two disctinct way o
   * [ROSAria](https://wiki.ros.org/ROSARIA/Tutorials/How%20to%20use%20ROSARIA)
   
 ## How to install:
-  * _cd catkin_ws_
+  * _cd catkin_ws/_
   * _source devel/setup.bash_
-  * _cd src_
+  * _cd src/_
   * git clone https://github.com/SirSimonSays/pyo_ros
 
 ## How to launch:
