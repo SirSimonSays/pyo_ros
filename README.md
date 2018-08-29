@@ -13,7 +13,7 @@ The fact that Myo has IMU sensors has inducted me to develop two disctinct way o
   * _cd catkin_ws_
   * _source devel/setup.bash_
   * _cd src_
-  * _git clone https://github.com/SirSimonSays/pyo_ros
+  * git clone https://github.com/SirSimonSays/pyo_ros
 
 ## How to launch:
   * turtlesim controlled by Myo
