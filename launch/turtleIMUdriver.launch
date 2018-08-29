@@ -1,13 +1,14 @@
 <launch>
 
-  <!-- launch turtle
+  <!-- if you want to launch a turtlesim and control it with Myo uncomment this group -->
+  <!-- launch turtle -->
   <group ns="turtlesim1">
     <node pkg="turtlesim" name="sim" type="turtlesim_node"/>
-  </group> -->
+  </group>
 
   <!-- launch turtleTalkerIMU -->
   <group ns="turtleTalkerIMU">
-    <node pkg="rosaria" name="RosAria" type="RosAria" respawn="true" output="screen"/>
+  <!-- <node pkg="rosaria" name="RosAria" type="RosAria" respawn="true" output="screen"/> -->
   <!-- <node pkg="pyo_ros" name="keyboard" type="keyboard.py" output="screen"/> -->
     <node pkg="pyo_ros" name="tTIMU" type="turtleTalkerIMU.py" output="screen"/>
   </group>
