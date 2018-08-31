@@ -28,3 +28,6 @@ The fact that Myo has IMU sensors has inducted me to develop two disctinct way o
   
 ## Useful link:
   * https://wiki.ros.org/ROS/Tutorials
+  * https://github.com/dzhu/myo-raw
+  * https://developer.thalmic.com/docs/api_reference/platform/functions.html
+  * http://www.fernandocosentino.net/pyoconnect/
