@@ -1,3 +1,4 @@
+<!-- tried to use gazebo and model a world with a virtual P3AT but I changed my mind and I have used RosAria and real P3AT -->
 <?xml version="1.0" ?>
 <sdf version='1.6'>
   <world name='default'>
